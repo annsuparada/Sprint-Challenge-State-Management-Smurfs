@@ -10,6 +10,7 @@ const SmurfsList = props => {
     console.log(`props.smurfs`,props.smurfs)
     return (
         <>
+        
             <button className="btn" onClick={props.getData}>
                 {props.isLoading ? (
                     <Loader
@@ -18,16 +19,14 @@ const SmurfsList = props => {
                     height="100"
                     width="100" />
                 ) : (
-                    'NOCK NOCK NOCK...'
+                    'Open the Door'
                 )}
             </button>
-
+            {props.error && <p className="error">{props.error}</p>}
             {props.smurfs && props.smurfs.map(item => 
                 <Smurf key={item.name} smurf={item} /> 
             )}
             
-            
-            <h1>{props.test}</h1>
         
         </>
     )
@@ -37,7 +36,7 @@ const mapStateToProps = state => {
     return{
         isLoading: state.isLoading,
         smurfs: state.smurfs,
-        
+        error: state.error
     }
 }
 

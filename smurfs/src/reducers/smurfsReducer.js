@@ -1,7 +1,8 @@
 import {
     FETCH_SMURFS_DATA_START,
     FETCH_SMURFS_DATA_SUCCESS,
-    FETCH_SMURFS_DATA_FAILURE
+    FETCH_SMURFS_DATA_FAILURE,
+    ADD_SMURFS
 } from '../actions'
 
 const initialState = {
@@ -31,6 +32,12 @@ export const reducer = (state = initialState, action) => {
                     isLoading: false,
                     error: 'The API is down. Please try again later'
                 }
+        case ADD_SMURFS:
+            return {
+                ...state,
+                isLoading: false,
+                smurfs: [...state.smurfs, action.payload]
+            }
         default: 
             return state;
     }
